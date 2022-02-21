@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('oracle', 'Oracle@test');
+
+
 Route::get('chart  
 s', 'HomeController@chartjs');
 

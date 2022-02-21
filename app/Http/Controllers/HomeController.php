@@ -66,6 +66,8 @@ return view('admin.dashboard')
     
     { 
 
+/* 
+From Sql Query
 DB::enableQueryLog();
   
         $view=\DB::table('image_upload')
@@ -123,6 +125,22 @@ return view('admin.dashboard')
 
 
 //    return view('admin.dashboard', compact(['chart','tclaim','dstatus','claimed','pending_claim','claim_notfound']));
+
+*/
+
+ $view=DB::select('SELECT  * FROM (select  distinct(pama_regdatead),count( pama_patientid) as count  from hs_pama_patientmain  group by pama_regdatead order by pama_regdatead desc)  WHERE ROWNUM <=8');
+
+
+    $date=array_column($view, 'pama_regdatead');
+    $claim_code=array_column($view, 'count');
+
+return view('admin.dashboard')
+              
+            ->with('date',$date)
+            ->with('claim_code',json_encode($claim_code,JSON_NUMERIC_CHECK));   
+
+
+
 
     }
 

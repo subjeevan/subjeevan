@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'oracle'),
+    'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -89,7 +89,20 @@ return [
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
-        ],	
+        ],
+		'oracle' => [
+			'driver'        => 'oracle',
+			'tns'           => env('DB_TNS', 'HOSPITAL'),
+			'host'          => env('DB_HOST', '172.16.20.7'),
+			'port'          => env('DB_PORT', '1521'),
+			'database'      => env('DB_DATABASE', 'HOSPITAL'),
+			'username'      => env('DB_USERNAME', 'BEH_USER'),
+			'password'      => env('DB_PASSWORD', 'pwd_beh'),
+			'charset'       => env('DB_CHARSET', 'AL32UTF8'),
+			'prefix'        => env('DB_PREFIX', ''),
+			'prefix_schema' => env('DB_SCHEMA_PREFIX', ''),
+			'edition'       => env('DB_EDITION', 'ora$base'),
+		],
 
     ],
 

@@ -27,7 +27,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>{{$tclaim}}</h3>
+                <h3>date</h3>
 
                 <p>Total Claim</p>
               </div>
