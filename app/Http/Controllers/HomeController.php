@@ -128,7 +128,7 @@ return view('admin.dashboard')
 
 */
 
- $view=DB::select('SELECT  * FROM (select  distinct(pama_regdatead),count( pama_patientid) as count  from hs_pama_patientmain  group by pama_regdatead order by pama_regdatead desc)  WHERE ROWNUM <=8');
+ $view=DB::select('SELECT  * FROM (select  distinct(pama_regdatead),count( pama_patientid) as count  from hs_pama_patientmain  group by pama_regdatead order by pama_regdatead desc)  WHERE ROWNUM <=18');
 
 
     $date=array_column($view, 'pama_regdatead');
