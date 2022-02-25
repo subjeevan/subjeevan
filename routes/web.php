@@ -13,8 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('oracle', 'Oracle@test');
+Route::get('oracle',function(){
+        return view('oracle');
+});
+        
+Route::get('data', 'oracle@data')->name('data.list');
 
+Route::get('dataa', [oracle::class, 'data'])->name('data.list');
 
 Route::get('chart  
 s', 'HomeController@chartjs');

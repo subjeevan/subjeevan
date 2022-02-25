@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Patient_image_upload;
+use App\Hs_pama_patientmain;
+use App\vw_patientdetails;
+
 
 use Auth;
 use DB;
@@ -126,18 +129,32 @@ return view('admin.dashboard')
 
 //    return view('admin.dashboard', compact(['chart','tclaim','dstatus','claimed','pending_claim','claim_notfound']));
 
+
+
 */
 
  $view=DB::select('SELECT  * FROM (select  distinct(pama_regdatead),count( pama_patientid) as count  from hs_pama_patientmain  group by pama_regdatead order by pama_regdatead desc)  WHERE ROWNUM <=18');
 
 
-    $date=array_column($view, 'pama_regdatead');
-    $claim_code=array_column($view, 'count');
+
+ $elequent=vw_patientdetails::select()
+        ->take(13)
+        ->get();
+
+ $query=DB::table("vw_patientdetails")
+        ->select()
+        ->take(13)
+        ->get()         //here it sends data as object
+        ->toArray();   //it sends data in array
+
+    $date=array_column($query, 'pama_regdatead');
+    $general=array_column($query, 'general');
+    $insurance=array_column($query, 'insurance');
 
 return view('admin.dashboard')
-              
             ->with('date',$date)
-            ->with('claim_code',json_encode($claim_code,JSON_NUMERIC_CHECK));   
+            ->with('insurance',$insurance)
+            ->with('general',$general);   
 
 
 

@@ -7,17 +7,21 @@ use Illuminate\Http\Request;
 
 class Oracle extends Controller
 {
-   public function test(){
+
+
+   public function data(Request $request)
+    {
 
  /* 
  $users=DB::select('SELECT  * FROM (select  distinct(pama_regdatead),count( pama_patientid)  from hs_pama_patientmain  group by pama_regdatead order by pama_regdatead desc)  WHERE ROWNUM <=70');
 
 */
-
-$users=DB::table("hs_pama_patientmain")
-->WHERE('pama_regdatead','=','2010/08/11')
-->get();
-
-var_dump($users);
-}
+ if ($request->ajax()) {
+            $list = DB::table("hs_pama_patientmain")
+                    ->WHERE('pama_regdatead','=','2010/08/11')
+                    ->get();
+            return Datatables::of($list)
+                    ->make(true);
+                    }
+        }
 }
