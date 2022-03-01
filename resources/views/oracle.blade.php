@@ -49,14 +49,14 @@
     var table = $('.yajra-datatable').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('data.list') }}",
+        ajax: "{{ route('data') }}",
         
 
         columns: [
-            {list: 'pama_patientid', name: 'pama_patientid'},
-            {list: 'pama_fname', name: 'pama_fname'},
-            {list: 'pama_lname', name: 'pama_lname'},
-            {list: 'pama_age', name: 'pama_age'},
+            {data: 'pama_patientid', name: 'pama_patientid'},
+            {data: 'pama_fname', name: 'pama_fname'},
+            {data: 'pama_lname', name: 'pama_lname'},
+            {data: 'pama_age', name: 'pama_age'},
           
             {
                 data: 'action', 

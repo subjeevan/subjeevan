@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use Illuminate\Http\Request;
-
+use Datatables;
 class Oracle extends Controller
 {
 
@@ -20,8 +20,9 @@ class Oracle extends Controller
             $list = DB::table("hs_pama_patientmain")
                     ->WHERE('pama_regdatead','=','2010/08/11')
                     ->get();
+dd ('here');
             return Datatables::of($list)
-                    ->make(true);
-                    }
+                ->make(true);
         }
+    }
 }

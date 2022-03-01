@@ -16,10 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('oracle',function(){
         return view('oracle');
 });
-        
-Route::get('data', 'oracle@data')->name('data.list');
 
-Route::get('dataa', [oracle::class, 'data'])->name('data.list');
+
+Route::get('data', [oracle::class, 'data'])->name('data');
 
 Route::get('chart  
 s', 'HomeController@chartjs');
@@ -33,6 +32,7 @@ Route::get('/stack', function () {
     return view('stack');
 });
 
+Route::get('dashboard/list', 'HomeController@registeredpatients')->name('dashboard.list');
 
 
 Auth::routes();

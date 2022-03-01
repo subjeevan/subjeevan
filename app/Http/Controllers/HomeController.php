@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use DataTables;
 use App\Patient_image_upload;
 use App\Hs_pama_patientmain;
 use App\vw_patientdetails;
@@ -138,8 +138,14 @@ return view('admin.dashboard')
 
 
  $elequent=vw_patientdetails::select()
-        ->take(13)
+
         ->get();
+
+
+ $patientsdetail=Hs_pama_patientmain::select()
+ ->take(11)
+        ->get();
+
 
  $query=DB::table("vw_patientdetails")
         ->select()
@@ -151,16 +157,18 @@ return view('admin.dashboard')
     $general=array_column($query, 'general');
     $insurance=array_column($query, 'insurance');
 
-return view('admin.dashboard')
-            ->with('date',$date)
-            ->with('insurance',$insurance)
-            ->with('general',$general);   
-
-
-
+return view('admin.dashboard',compact('patientsdetail','elequent','date','insurance','general')); 
 
     }
 
+public function registeredpatients(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = Hs_pama_patientmain::select('pama_regdatead','pama_patientid','pama_patientname','pama_age','pama_schemeid')->take(50100)->get();
+            return Datatables::of($data)
+            ->make(true);
+       }
+}
 function js()
     
                 { 
